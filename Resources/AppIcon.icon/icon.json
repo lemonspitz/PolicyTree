@@ -1,0 +1,78 @@
+{
+  "fill": {
+    "linear-gradient": [
+      "display-p3:0.05,0.60,0.62,1.0",
+      "display-p3:0.03,0.24,0.46,1.0"
+    ]
+  },
+  "groups": [
+    {
+      "name": "Inti",
+      "layers": [
+        {
+          "name": "core",
+          "image-name": "core.svg",
+          "glass": true,
+          "fill": {
+            "solid": "display-p3:0.98,0.36,0.30,1.0"
+          }
+        }
+      ],
+      "shadow": {
+        "kind": "layer-color",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0.0
+      },
+      "specular": true
+    },
+    {
+      "name": "Simpul",
+      "layers": [
+        {
+          "name": "leaves",
+          "image-name": "leaves.svg",
+          "glass": true,
+          "opacity": 0.95
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.4
+      },
+      "specular": true
+    },
+    {
+      "name": "Garis",
+      "layers": [
+        {
+          "name": "connectors",
+          "image-name": "connectors.svg",
+          "glass": false,
+          "opacity": 0.55
+        }
+      ],
+      "shadow": {
+        "kind": "none",
+        "opacity": 0.0
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0.0
+      },
+      "specular": false
+    }
+  ],
+  "supported-platforms": {
+    "circles": [
+      "watchOS"
+    ],
+    "squares": "shared"
+  }
+}

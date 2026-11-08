@@ -1,0 +1,3 @@
+# Policy Tree for Windows. LGPL Qt loaded as shared libraries, so it can ship inside the app.
+PySide6-Essentials==6.10.3
+pyinstaller>=6.11

@@ -1,0 +1,4 @@
+*.cmd text eol=crlf
+windows/installer/INSTALL.txt text eol=crlf
+*.ico binary
+*.png binary

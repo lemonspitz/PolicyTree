@@ -1,0 +1,8 @@
+build/
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+windows/.venv*/
+windows/build/
+windows/dist/

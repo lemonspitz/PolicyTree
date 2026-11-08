@@ -1,0 +1,13 @@
+Policy Tree 1.0 untuk Windows
+=============================
+
+1. Ekstrak folder ini ke tempat yang akan tetap, misalnya Documents\Policy Tree.
+2. Klik ganda Install.cmd untuk menambahkan Policy Tree ke menu Start dan desktop,
+   sekaligus mengaitkan berkas .policytree (atau langsung klik ganda "Policy Tree.exe").
+   Windows mungkin memperingatkan bahwa penerbitnya tidak dikenal:
+   pilih More info > Run anyway.
+
+Berkas .policytree bisa dipindah bolak-balik dengan Policy Tree di Mac.
+Untuk menghapus: jalankan Uninstall.cmd, lalu hapus folder ini.
+
+Dibuat oleh @lemonspitz - github.com/lemonspitz

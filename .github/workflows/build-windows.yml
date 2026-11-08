@@ -1,0 +1,85 @@
+# Builds Policy Tree for Windows and checks it on a real Windows machine.
+name: Build Windows
+
+on:
+  push:
+    branches: [main, build-*]
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+    defaults:
+      run:
+        working-directory: windows
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Check from source
+        run: |
+          python tests/test_model.py
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          python tests/smoke.py ../screenshots
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          python tests/english.py ../screenshots
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          python ../tools/i18n_check.py
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+
+      - name: Package
+        run: |
+          pyinstaller --noconfirm --clean policytree.spec
+          Copy-Item installer/Install.cmd, installer/Uninstall.cmd, installer/INSTALL.txt "dist/Policy Tree/"
+
+      - name: Check the package
+        run: |
+          $exe = (Resolve-Path "dist/Policy Tree/Policy Tree.exe").Path
+          $p = Start-Process -FilePath $exe -ArgumentList '--selfcheck' -PassThru -Wait
+          "selfcheck exit code: $($p.ExitCode)"
+          if ($p.ExitCode -ne 0) { exit 1 }
+          $v = (Get-Item $exe).VersionInfo
+          "version: $($v.ProductVersion) / $($v.ProductName)"
+          if ($v.ProductVersion -ne '1.0') { exit 1 }
+
+      - name: Check the installer scripts
+        run: |
+          Push-Location "dist/Policy Tree"
+          "" | cmd /c Install.cmd
+          Pop-Location
+          $programs = [Environment]::GetFolderPath('Programs')
+          if (-not (Test-Path (Join-Path $programs 'Policy Tree.lnk'))) { "no Start menu shortcut"; exit 1 }
+          $cmd = (Get-ItemProperty 'HKCU:\Software\Classes\PolicyTree.Document\shell\open\command').'(default)'
+          "open command: $cmd"
+          if ($cmd -notlike '*Policy Tree.exe*%1*') { exit 1 }
+          Push-Location "dist/Policy Tree"
+          "" | cmd /c Uninstall.cmd
+          Pop-Location
+          if (Test-Path (Join-Path $programs 'Policy Tree.lnk')) { "shortcut left behind"; exit 1 }
+          if (Test-Path 'HKCU:\Software\Classes\.policytree') { "association left behind"; exit 1 }
+          exit 0
+
+      - name: Zip
+        run: Compress-Archive -Force -Path "dist/Policy Tree" -DestinationPath "dist/Policy-Tree-Windows.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Policy-Tree-Windows
+          path: windows/dist/Policy-Tree-Windows.zip
+          retention-days: 14
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-Windows
+          path: screenshots
+          retention-days: 14

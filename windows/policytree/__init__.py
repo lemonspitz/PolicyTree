@@ -1,0 +1,5 @@
+APP_NAME = "Policy Tree"
+VERSION = "1.0"
+AUTHOR = "@lemonspitz"
+AUTHOR_URL = "https://github.com/lemonspitz"
+FILE_EXT = "policytree"
