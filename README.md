@@ -6,6 +6,24 @@ Dibuat oleh [@lemonspitz](https://github.com/lemonspitz).
 *A problem-tree and objective-tree builder for policy analysis, for Mac and Windows. The interface is
 available in Indonesian and English (Settings → Language).*
 
+## Tangkapan layar / Screenshots
+
+**Pohon masalah / Problem tree:** akibat di atas, masalah inti di tengah, penyebab di bawah, dengan kategori dan
+penanda akar masalah. *Effects on top, the core problem in the middle, causes below, with categories and root-cause tags.*
+
+![Problem tree](docs/problem-tree.png)
+
+**Pohon tujuan / Objective tree:** dibuat dari pohon masalah; kotak yang belum dirumuskan ditandai.
+*Turned from the problem tree; boxes not yet rewritten as objectives are marked.*
+
+![Objective tree](docs/objective-tree.png)
+
+**Tema gelap / Dark theme**
+
+![Problem tree in the dark theme](docs/problem-tree-dark.png)
+
+*Contoh: percepatan penurunan stunting (angka ilustratif). Example: accelerating stunting reduction (illustrative figures).*
+
 ## Unduh / Download
 
 Ambil versi terbaru di halaman [Releases](https://github.com/lemonspitz/PolicyTree/releases/latest):
