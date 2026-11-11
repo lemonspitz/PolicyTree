@@ -8,6 +8,11 @@ available in Indonesian and English (Settings → Language).*
 
 ## Tangkapan layar / Screenshots
 
+**Aplikasi Mac / The Mac app:** kanvas pohon di kiri, inspektor untuk kotak terpilih di kanan.
+*The tree canvas on the left, the inspector for the selected box on the right.*
+
+![Policy Tree on the Mac](docs/app-window.png)
+
 **Pohon masalah / Problem tree:** akibat di atas, masalah inti di tengah, penyebab di bawah, dengan kategori dan
 penanda akar masalah. *Effects on top, the core problem in the middle, causes below, with categories and root-cause tags.*
 
